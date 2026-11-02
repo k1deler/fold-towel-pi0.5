@@ -19,6 +19,8 @@
 
 ## 当前操作范围
 
+用户已在CPU准备通过后明确请求开始训练。后台`scripts/train_pipeline.py`已启动，检测到一张空闲GPU后自动完成smoke→train；当前仍为排队状态，不能称为反向训练已开始。该管线只管理自己的子进程，有有限等待／执行时间，不触碰ACT和机器人。
+
 1. 检查本地终端和训练服务器SSH。
 2. 只读确认ACT结果、数据SHA、OpenPI版本、基础权重目录和Python/JAX环境。
 3. 复制固定OpenPI代码到新实验`vendor/openpi`，不修改共享源码和环境。
