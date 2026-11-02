@@ -45,7 +45,9 @@ def main():
         if marker['settings_sha256']!=file_sha(a.settings):raise ValueError('GPU smoke check is stale')
     # Do not inherit JAX_PLATFORMS=cpu from the data preparation shell.
     os.environ['CUDA_VISIBLE_DEVICES']=str(a.gpu)
-    os.environ['JAX_PLATFORMS']='cuda'
+    # Keep CUDA as the default compute backend, with CPU available for the
+    # ordered metric callback. CUDA failure still raises; no silent CPU fallback.
+    os.environ['JAX_PLATFORMS']='cuda,cpu'
     os.environ['XLA_PYTHON_CLIENT_PREALLOCATE']='false'
     if not str(a.base_params.resolve()).endswith('/pi05_base/params'):
         raise ValueError('Base checkpoint must be the separately verified π0.5 base params')
