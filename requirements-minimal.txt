@@ -1,0 +1,5 @@
+# Pure adapter/data tests. Real π0.5 execution uses the separately pinned OpenPI environment.
+numpy>=1.26,<2
+opencv-python>=4.10,<4.12
+pytest>=8.3,<9
+pyyaml>=6,<7

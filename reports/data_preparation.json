@@ -1,0 +1,71 @@
+{
+  "status": "prepared_no_training",
+  "task": "fold_towel",
+  "time_wall_ns": 1793608558012112884,
+  "train_episodes": 40,
+  "val_episodes": 11,
+  "train_windows": 20070,
+  "val_windows": 5702,
+  "horizon": 50,
+  "same_episode_split_as_ACT": true,
+  "train_only_start_pose": [
+    -0.6870225667953491,
+    1.3684046268463135,
+    1.7654212713241577,
+    -1.0138792991638184,
+    -0.17017924785614014,
+    -0.09053367376327515,
+    0.9900954365730286,
+    0.49793046712875366,
+    1.535973072052002,
+    2.114633560180664,
+    -1.529354453086853,
+    0.044584959745407104,
+    0.27789539098739624,
+    0.9875938296318054
+  ],
+  "contract": {
+    "task": "fold_towel",
+    "data_sha256": {
+      "meta.json": "70212b164c761285f3eca82844bb4afe24b20e105a62bd00106ea4018bcd53b1",
+      "qpos.npy": "779a1d076a932a20de721f29cdfdc922df707d38c43e18f195f988ab197bd465",
+      "action.npy": "32f19b1571164569134705773cfd37548355525a28190208442f1bffc01684c9",
+      "right_wrist.idx.npy": "f1167a171f9e1ee2867f46e66978a9adfdf085fe884dc9c044b6d1c6a208116d",
+      "right_wrist.jpg.bin": "fa3c307ebea373e06818b8cdef0aad18307b6829a4d9fb83ecdbe2f455f5bd47",
+      "left_wrist.idx.npy": "cb7dddd89ad877aa5053ee86d407698b49b6d34ebafd02b8441ba0c8feb88bf1",
+      "left_wrist.jpg.bin": "4d87ccff6963af086394554e037ab01bffffcc11842c8717c0d7d82763c2829d"
+    },
+    "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
+    "split_sha256": "deba135931ddc3bdf39a66005529531636782983ecdf6ed45d29c806b78a3d50",
+    "horizon": 50,
+    "offset": 0,
+    "absolute_labels": "recorded leader(t+k)",
+    "relative_dimensions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "absolute_grippers": [
+      6,
+      13
+    ],
+    "source_order": "left_joint0..5,left_gripper,right_joint0..5,right_gripper",
+    "missing_base_camera": "zero RGB, image_mask false",
+    "normalization_fitted_on": "train only"
+  },
+  "norm_stats_sha256": "81560fc97900a5d7a9f77e5770afdceff4bd99a68ea842a0ff001f45ed98b04e",
+  "training_started": false,
+  "model_loaded": false,
+  "robot_commands_sent": 0,
+  "action_labels_match_ACT_physical_targets": true,
+  "representation_difference_from_ACT": "pi05 joint delta / absolute grippers; ACT all14 delta"
+}

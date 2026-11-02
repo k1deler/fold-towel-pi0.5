@@ -1,0 +1,17 @@
+{
+  "openpi_repo": "https://github.com/Physical-Intelligence/openpi",
+  "openpi_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+  "source_checkout_clean_at_inspection": true,
+  "snapshot_location": "vendor/openpi",
+  "environment_mode": "existing Python env reused read-only; independent pinned source snapshot",
+  "act_baseline": {
+    "phase": "complete_offline",
+    "model_sha256": "3a6057cd9dc0bc2acdaf9545df223ac0d8bdba73ecf870dc3a3102ffcedf7af6"
+  },
+  "pretrained_params_source": "official pi05_base available locally",
+  "pretrained_params_bytes": 12441721931,
+  "local_terminal_checked": true,
+  "ssh_checked": true,
+  "robot_connections": 0,
+  "gpu_fine_tuning_started": false
+}

@@ -1,0 +1,23 @@
+{
+  "source": "official pi05_base reused read-only",
+  "metadata_files": {
+    "_CHECKPOINT_METADATA": {
+      "bytes": 258,
+      "sha256": "7674d497b452e8336840e6d21eaa85725d68c53fc011a648121f2b29b1ce5a8a"
+    },
+    "_METADATA": {
+      "bytes": 21402,
+      "sha256": "250d0ad0f6540a5e4bdd70442d6864cef729724f2d23e2dd2cc669563a668d70"
+    },
+    "manifest.ocdbt": {
+      "bytes": 117,
+      "sha256": "78b6898ea1f8897a0225022b0ab799455cff0e15158a9ca349d8efbbe044aa55"
+    },
+    "ocdbt.process_0/manifest.ocdbt": {
+      "bytes": 458,
+      "sha256": "667bd6f7f89374732f6bfe10dd446218efa5cdc99eca2af1006ba40f95ee29d0"
+    }
+  },
+  "all_weight_shards_hashed": false,
+  "parameter_restore_verified": false
+}
