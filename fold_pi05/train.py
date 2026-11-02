@@ -1,6 +1,7 @@
 """Explicit π0.5 LoRA smoke/train commands; preparation never launches this module."""
 import argparse
 import json
+import logging
 import os
 from pathlib import Path
 import subprocess
@@ -70,12 +71,33 @@ def main():
            'environment_from_preflight':preflight['environment']}
     atomic(reports/(a.mode+'_status.json'),state)
     try:
+        # OpenPI's init_logging configures handlers[0], so establish its handler
+        # just as the original standalone entrypoint does before calling main.
+        logging.basicConfig(level=logging.INFO)
+        trainer=upstream_trainer(a.openpi_root)
+        smoke_metrics=[]
+        if a.mode=='smoke':
+            import numpy as np
+            original_step=trainer.train_step
+            def inspect_metrics(info):
+                metrics={key:float(np.asarray(value)) for key,value in info.items()}
+                if not all(np.isfinite(value) for value in metrics.values()):
+                    raise FloatingPointError('Nonfinite π0.5 optimizer-step metrics')
+                smoke_metrics.append(metrics)
+            def checked_step(*arguments,**keywords):
+                result,info=original_step(*arguments,**keywords)
+                jax.debug.callback(inspect_metrics,info,ordered=True)
+                return result,info
+            trainer.train_step=checked_step
         # Use the same scoped adapter for training and normalization/inference.
         with dataset_factory(a.data,reports/'split.json',s['action_horizon'],s['prompt']):
-            upstream_trainer(a.openpi_root).main(cfg)
+            trainer.main(cfg)
         state['phase']=a.mode+'_complete'
         atomic(reports/(a.mode+'_status.json'),state)
         if a.mode=='smoke':
+            if len(smoke_metrics)!=2:
+                raise RuntimeError('Smoke run did not confirm two finite optimizer-step results')
+            atomic(reports/'gpu_smoke_metrics.json',smoke_metrics)
             checkpoints=[p for p in cfg.checkpoint_dir.iterdir() if p.is_dir() and p.name.isdigit() and (p/'params').exists()]
             if not checkpoints:raise RuntimeError('Smoke trainer returned without an inference params checkpoint')
             atomic(reports/'gpu_smoke_passed.json',{'status':'passed','settings_sha256':file_sha(a.settings),

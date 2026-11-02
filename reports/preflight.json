@@ -1,15 +1,16 @@
 {
   "status": "cpu_preflight_passed",
-  "time_wall_ns": 1793608962141989189,
+  "time_wall_ns": 1793611180511818373,
   "openpi_expected_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
   "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
   "runtime_sources": {
     "adapter/__init__.py": "3f83134b57a1bc9765fdbdc425258e72e4c1daea1b94e4b8e0a280138638143f",
     "adapter/config.py": "0a6965f2a7f73ab6ca69e5a06261af19e43d9bfae2026cdb93c5ee99ef2780c7",
     "adapter/dataset.py": "eb146307910a2e468fdfb1c91ce0737e4876c645133a2b6ebe0092eec0c66744",
+    "adapter/evaluate.py": "c1528156def5355c20fde5ede179386b39242de01e604b3784ed516adb1c9946",
     "adapter/preflight.py": "a81e99da0b54387646ef51d292ec572efd481dcfcee929e1ae253e25a3c622a8",
     "adapter/prepare.py": "4dbc1a33fd87f37af0a556fa1e1949be3fead058c13e19bae0f74abd046ba7f1",
-    "adapter/train.py": "d3b633796ea8541cfe583c0aecee400c9052341bae1906410de8294a61956818",
+    "adapter/train.py": "cf618f60623b31f8c2caf95013b699aa3c859cc1bc83abfee735fb6d79c0668f",
     "openpi/src/openpi/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "openpi/src/openpi/conftest.py": "626672e385fb276396c119e2220421065c58f8ec602401e8bf2ae509f9fffaf3",
     "openpi/src/openpi/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
