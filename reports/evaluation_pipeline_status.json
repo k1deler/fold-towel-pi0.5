@@ -1,5 +1,5 @@
 {
-  "pid": 1498069,
+  "pid": 1500365,
   "robot_commands_sent": 0,
   "steps": [
     9999,
@@ -9,25 +9,34 @@
     8000
   ],
   "samples": 256,
-  "created_wall_ns": 1793671693954787199,
-  "completed": [],
-  "phase": "waiting_for_idle_gpu",
-  "updated_wall_ns": 1793671694550284763,
-  "pending_step": 9999,
+  "created_wall_ns": 1793672160996949262,
+  "completed": [
+    9999,
+    2000,
+    4000,
+    6000,
+    8000
+  ],
+  "resource_policy": "shared_headroom",
+  "gpu_budget_mib": 32768,
+  "reserve_mib": 8192,
+  "phase": "evaluation_complete_offline",
+  "updated_wall_ns": 1793672804385266481,
+  "pending_step": 8000,
   "gpu": null,
   "child_pid": null,
   "gpu_inventory": [
     {
       "index": 0,
-      "used_mib": 29617,
+      "used_mib": 29970,
       "total_mib": 97871,
-      "utilization": 0
+      "utilization": 1
     },
     {
       "index": 1,
       "used_mib": 49901,
       "total_mib": 97871,
-      "utilization": 93
+      "utilization": 100
     },
     {
       "index": 2,
@@ -42,5 +51,13 @@
       "utilization": 100
     }
   ],
-  "gpu_checked_wall_ns": 1793671754824189423
+  "gpu_checked_wall_ns": 1793672545102962715,
+  "selected_gpu_snapshot": {
+    "index": 0,
+    "used_mib": 29970,
+    "total_mib": 97871,
+    "utilization": 0
+  },
+  "log": "eval_8000_console.log",
+  "selected_checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/8000"
 }

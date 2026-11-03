@@ -1,0 +1,60 @@
+{
+  "scope": "checkpoint selection on shared held-out windows; not independent test or folding success",
+  "ranked_results": [
+    {
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/8000",
+      "samples": 256,
+      "joint_mae_rad": 0.05079651264517452,
+      "gripper_mae": 0.06783532692410518,
+      "first_step_joint_mae_rad": 0.016824415928870923,
+      "hold_joint_mae_rad": 0.08611412376776571,
+      "raw_gripper_out_of_range_fraction": 0.174609375,
+      "median_inference_seconds": 0.14431482600048184
+    },
+    {
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999",
+      "samples": 256,
+      "joint_mae_rad": 0.050846474211624214,
+      "gripper_mae": 0.06420609707827679,
+      "first_step_joint_mae_rad": 0.016528715797884768,
+      "hold_joint_mae_rad": 0.08611412376776571,
+      "raw_gripper_out_of_range_fraction": 0.1913671875,
+      "median_inference_seconds": 0.11614580449531786
+    },
+    {
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/6000",
+      "samples": 256,
+      "joint_mae_rad": 0.05204004018518996,
+      "gripper_mae": 0.0672421515143651,
+      "first_step_joint_mae_rad": 0.017171720594906976,
+      "hold_joint_mae_rad": 0.08611412376776571,
+      "raw_gripper_out_of_range_fraction": 0.2859375,
+      "median_inference_seconds": 0.13553760800277814
+    },
+    {
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/4000",
+      "samples": 256,
+      "joint_mae_rad": 0.05612026888314479,
+      "gripper_mae": 0.06869803613895784,
+      "first_step_joint_mae_rad": 0.01834117860291447,
+      "hold_joint_mae_rad": 0.08611412376776571,
+      "raw_gripper_out_of_range_fraction": 0.309296875,
+      "median_inference_seconds": 0.11479076748946682
+    },
+    {
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/2000",
+      "samples": 256,
+      "joint_mae_rad": 0.06285761694229829,
+      "gripper_mae": 0.06528997289409744,
+      "first_step_joint_mae_rad": 0.02114642668811939,
+      "hold_joint_mae_rad": 0.08611412376776571,
+      "raw_gripper_out_of_range_fraction": 0.2105078125,
+      "median_inference_seconds": 0.11416517500765622
+    }
+  ],
+  "selected_checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/8000",
+  "beats_hold_baseline": true,
+  "raw_gripper_excursions_require_deployment_handling": true,
+  "robot_commands_sent": 0,
+  "automatic_deployment": false
+}

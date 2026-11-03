@@ -9,3 +9,5 @@
 - Record upstream OpenPI commit and base-checkpoint provenance; do not edit shared upstream code/environments.
 - Normalization and reset-pose summary use only the training episodes. Validation metrics are not folding success.
 - Default command is preflight/preparation. GPU smoke or training requires explicit CLI mode and an idle GPU; never kill other jobs.
+
+- User explicitly authorized occupied-GPU VRAM reuse for offline evaluation on 2026-11-03. Evaluation may use --share-with-headroom, with an explicit JAX allocator budget plus at least 8GiB spare reserve, prefer lower compute load, and never stop foreign processes. This does not change the separate training launcher defaults.

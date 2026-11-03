@@ -15,11 +15,11 @@
 
 源码为[Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi)固定commit`215abfb217dbac7d5f1273282331b9b1866c0479`，基础权重`pi05_base/params`。使用官方π0.5，不用`pi0_aloha_towel`冒充π0.5折毛巾模型。
 
-初始配置在`configs/pi05_lora.json`：LoRA的Gemma2B和300M动作专家、batch4、10000步、warmup500、peak_lr5e-5、seed42、单卡FSDP1、wandb关闭。它是待小训练验证的候选，不是已调好的最优参数。官方资源说明给出LoRA与全量微调不同显存要求，不能直接照ACT分配资源。[OpenPI官方说明](https://github.com/Physical-Intelligence/openpi#requirements)
+初始配置在`configs/pi05_lora.json`：LoRA的Gemma2B和300M动作专家、batch4、10000步、warmup500、peak_lr5e-5、seed42、单卡FSDP1、wandb关闭。该配置已通过真实小训练并完成10000步正式微调，不代表已调到最优参数。官方资源说明给出LoRA与全量微调不同显存要求，不能直接照ACT分配资源。[OpenPI官方说明](https://github.com/Physical-Intelligence/openpi#requirements)
 
 ## 当前操作范围
 
-10000步正式LoRA微调已完成，最终checkpoint为`seed42_v1/9999`。服务器日志与完成标记已通过SSH核实，阶段loss见`reports/STATUS.md`。验证集评估和真机运行尚未完成。新增离线评估队列已经上传，31项完整CPU测试通过，已在服务器后台启动并等待空闲GPU；尚未生成验证集结果。
+10000步正式LoRA微调已完成，最终checkpoint为`seed42_v1/9999`。服务器日志与完成标记已通过SSH核实，阶段loss见`reports/STATUS.md`。5份checkpoint离线验证评估已完成；真机运行尚未完成。评估队列已按用户授权复用剩余显存并完成全部评估，33项CPU测试通过。指标见[离线评估结果](reports/离线评估结果.md)。
 
 1. 检查本地终端和训练服务器SSH。
 2. 只读确认ACT结果、数据SHA、OpenPI版本、基础权重目录和Python/JAX环境。
@@ -63,7 +63,7 @@ bash scripts/gpu_experiment.sh smoke GPU_INDEX
 bash scripts/gpu_experiment.sh train GPU_INDEX
 ```
 
-GPU_INDEX替换成检查确认的空闲卡号。当前入口不允许共享忙卡，也不结束任何已有作业；不将“有剩余显存”误称为“空闲”。程序不会连接机械臂、实时相机、CAN或ACT硬件服务。
+GPU_INDEX替换成检查确认的空闲卡号。以上smoke/train训练入口仍仅使用空闲卡。下面的离线评估入口可按用户授权显式共享剩余显存；两者都不结束其他作业。程序不会连接机械臂、实时相机、CAN或ACT硬件服务。
 
 ## Git与来源
 
@@ -73,13 +73,14 @@ OpenPI及其基础模型按官方许可使用；完整第三方代码不去署�
 
 ## 已完成训练后的离线评估
 
-现有队列PID和最新阶段保存在服务器`reports/evaluation_pipeline_status.json`。先检查现有队列，避免重复启动。它只占用空闲GPU；模型已驻留但瞬时利用率低的卡不会被当作空闲。
+现有队列PID和最新阶段保存在服务器`reports/evaluation_pipeline_status.json`。先检查现有队列，避免重复启动。默认仅使用空闲GPU。用户于2026-11-03明确允许复用剩余显存后，评估队列可显式加`--share-with-headroom`：按计算负载从低到高选择剩余显存足够的卡，JAX分配器预算32GiB，另预留8GiB；不结束其他进程。预算针对JAX分配器，并非所有CUDA库的进程级硬上限。
 
 ```bash
 # 仅没有既有队列时，在训练服务器新实验code目录显式启动：
 $HOME/output/envs/yam-openpi/bin/python -u scripts/evaluate_pipeline.py \
   --workspace "$HOME/output/personal/k1deler/fold_towel_pi05_20261102" \
-  --samples 256 --wait-hours 12 --execute
+  --samples 256 --wait-hours 12 --share-with-headroom \
+  --gpu-budget-mib 32768 --reserve-mib 8192 --execute
 ```
 
 固定比较5份checkpoint和同一组验证窗口，先评估最终权重。每份报告为`reports/eval_STEP.json`，汇总为`reports/checkpoint_comparison.json`。不修改ACT、不连接设备、不自动部署；候选选择是验证集选择，不能宣称独立测试或折毛巾成功率。

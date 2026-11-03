@@ -51,3 +51,17 @@ def test_duplicate_or_wrong_checkpoint_report_is_rejected(tmp_path):
         queue.validate_result(value, tmp_path, 2)
     with pytest.raises(ValueError):
         queue.validate_result(result(tmp_path/'other'), tmp_path, 2)
+
+
+def test_explicit_sharing_uses_free_memory_and_prefers_lower_load():
+    rows = [dict(index=0, used_mib=29617, total_mib=97871, utilization=0),
+            dict(index=1, used_mib=49901, total_mib=97871, utilization=100),
+            dict(index=2, used_mib=60000, total_mib=97871, utilization=0)]
+    assert queue.eligible_gpus(rows) == []
+    assert queue.eligible_gpus(rows, True) == [0, 1]
+
+
+def test_reserve_is_kept_above_allocator_budget():
+    rows = [dict(index=0, used_mib=60000, total_mib=97871, utilization=0)]
+    assert queue.eligible_gpus(rows, True, 32768, 8192) == []
+    assert queue.eligible_gpus(rows, True, 16384, 8192) == [0]

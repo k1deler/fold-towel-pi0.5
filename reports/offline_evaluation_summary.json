@@ -1,0 +1,28 @@
+{
+  "status": "evaluation_complete_offline",
+  "selected_checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/8000",
+  "samples_per_checkpoint": 256,
+  "checkpoint_count": 5,
+  "selected_metrics": {
+    "scope": "held-out open-loop physical leader target prediction; not folding success",
+    "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/8000",
+    "samples": 256,
+    "joint_mae_rad": 0.05079651264517452,
+    "joint_rmse_rad": 0.08617779384062904,
+    "gripper_mae": 0.06783532692410518,
+    "first_step_joint_mae_rad": 0.016824415928870923,
+    "hold_joint_mae_rad": 0.08611412376776571,
+    "raw_gripper_out_of_range_fraction": 0.174609375,
+    "median_inference_seconds": 0.14431482600048184,
+    "predictions_clipped_before_metrics": false,
+    "robot_commands_sent": 0,
+    "comparison_note": "ACT has H100, pi05 H50; align physical target horizons before comparing aggregate MAE."
+  },
+  "relative_joint_mae_reduction_against_hold_percent": 41.01256516043341,
+  "core_sources_match_training_preflight": true,
+  "queue_source_sha256_lf": "5f346a0a629fab3934b1b066fed67f7ce6cdd28ac6632640c254d37821a509e6",
+  "tests_passed": 33,
+  "robot_commands_sent": 0,
+  "robot_tested": false,
+  "automatic_deployment": false
+}

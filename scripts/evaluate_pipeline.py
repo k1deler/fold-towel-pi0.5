@@ -1,4 +1,4 @@
-"""Evaluate saved pi05 milestones on an idle GPU; never launch robot services."""
+"""Evaluate saved pi05 milestones with explicit GPU resource policy; no robot I/O."""
 import argparse
 import json
 import math
@@ -14,6 +14,17 @@ from train_pipeline import atomic, idle_candidates, inventory
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = (9999, 2000, 4000, 6000, 8000)
+
+
+def eligible_gpus(rows, share_with_headroom=False, budget_mib=32768, reserve_mib=8192):
+    if not share_with_headroom:
+        return idle_candidates(rows)
+    # Explicit user-authorized sharing: preserve a separate reserve above our
+    # allocator budget and prefer the lowest current compute load.
+    candidates = [row for row in rows
+                  if row['total_mib']-row['used_mib'] >= budget_mib+reserve_mib]
+    candidates.sort(key=lambda row: (row['utilization'], -(row['total_mib']-row['used_mib'])))
+    return [row['index'] for row in candidates]
 
 
 def validate_result(result, checkpoint, samples):
@@ -56,19 +67,27 @@ def main():
     p.add_argument('--workspace', type=Path, required=True)
     p.add_argument('--samples', type=int, default=256)
     p.add_argument('--wait-hours', type=float, default=12)
+    p.add_argument('--share-with-headroom', action='store_true',
+                   help='Explicitly permit an occupied GPU with sufficient free VRAM')
+    p.add_argument('--gpu-budget-mib', type=int, default=32768)
+    p.add_argument('--reserve-mib', type=int, default=8192)
     p.add_argument('--execute', action='store_true')
     a = p.parse_args()
     if not a.execute or sys.platform != 'linux':
         raise SystemExit('Offline GPU evaluation requires Linux and --execute')
     if not 0 < a.wait_hours <= 24 or not 1 <= a.samples <= 5702:
         raise ValueError('Invalid bounded waiting budget/sample count')
+    if a.gpu_budget_mib < 16384 or a.reserve_mib < 8192:
+        raise ValueError('Evaluation needs at least 16GiB allocator budget and 8GiB reserve')
     import fcntl
     r = a.workspace.resolve()
     reports = r/'reports'
     lock = (r/'evaluate_pipeline.lock').open('a')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     state = {'pid': os.getpid(), 'robot_commands_sent': 0, 'steps': list(STEPS),
-             'samples': a.samples, 'created_wall_ns': time.time_ns(), 'completed': []}
+             'samples': a.samples, 'created_wall_ns': time.time_ns(), 'completed': [],
+             'resource_policy': 'shared_headroom' if a.share_with_headroom else 'idle_only',
+             'gpu_budget_mib': a.gpu_budget_mib, 'reserve_mib': a.reserve_mib}
     child = None
 
     def record(phase, **values):
@@ -118,17 +137,18 @@ def main():
             checkpoint = checkpoint_root/str(step)
             report_path = reports/f'eval_{step}.json'
             if not report_path.exists():
-                record('waiting_for_idle_gpu', pending_step=step, gpu=None, child_pid=None)
+                record('waiting_for_gpu_headroom' if a.share_with_headroom else 'waiting_for_idle_gpu',
+                       pending_step=step, gpu=None, child_pid=None)
                 while True:
                     if time.monotonic() >= deadline:
-                        raise TimeoutError('No idle GPU within bounded queue budget')
+                        raise TimeoutError('No eligible GPU within bounded queue budget')
                     if shutil.disk_usage(r).free < 20*1024**3:
                         raise RuntimeError('Less than 20GiB disk headroom; no checkpoints removed')
                     rows = inventory()
                     state['gpu_inventory'] = rows
                     state['gpu_checked_wall_ns'] = time.time_ns()
                     atomic(reports/'evaluation_pipeline_status.json', state)
-                    candidates = idle_candidates(rows)
+                    candidates = eligible_gpus(rows, a.share_with_headroom, a.gpu_budget_mib, a.reserve_mib)
                     gpu_lock = None
                     for gpu in candidates:
                         locks = Path.home()/'.cache/k1deler_training'
@@ -137,9 +157,12 @@ def main():
                         try:
                             fcntl.flock(candidate_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
                             time.sleep(3)
-                            if gpu not in idle_candidates(inventory()):
+                            checked_rows = inventory()
+                            if gpu not in eligible_gpus(checked_rows, a.share_with_headroom,
+                                                        a.gpu_budget_mib, a.reserve_mib):
                                 candidate_lock.close()
                                 continue
+                            selected_row = next(row for row in checked_rows if row['index'] == gpu)
                             gpu_lock = candidate_lock
                             break
                         except BlockingIOError:
@@ -150,6 +173,8 @@ def main():
                 try:
                     env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu), JAX_PLATFORMS='cuda,cpu',
                                XLA_PYTHON_CLIENT_PREALLOCATE='false', PYTHONDONTWRITEBYTECODE='1',
+                               XLA_PYTHON_CLIENT_MEM_FRACTION=str(a.gpu_budget_mib/selected_row['total_mib']),
+                               XLA_PYTHON_CLIENT_ALLOCATOR='default',
                                OMP_NUM_THREADS='2', OPENBLAS_NUM_THREADS='1', MKL_NUM_THREADS='2',
                                PYTHONPATH=os.pathsep.join(map(str, [ROOT, r/'vendor/openpi/src',
                                                          r/'vendor/openpi/packages/openpi-client/src'])))
@@ -164,7 +189,8 @@ def main():
                         child = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log,
                                                  stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,
                                                  start_new_session=True)
-                        record('evaluating', gpu=gpu, child_pid=child.pid, pending_step=step, log=log_path.name)
+                        record('evaluating', gpu=gpu, child_pid=child.pid, pending_step=step,
+                               selected_gpu_snapshot=selected_row, log=log_path.name)
                         try:
                             code = child.wait(timeout=3600)
                         except subprocess.TimeoutExpired:
