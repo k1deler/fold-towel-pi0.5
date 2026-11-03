@@ -19,7 +19,7 @@
 
 ## 当前操作范围
 
-10000步正式LoRA微调已完成，最终checkpoint为`seed42_v1/9999`。服务器日志与完成标记已通过SSH核实，阶段loss见`reports/STATUS.md`。验证集评估和真机运行尚未完成。新增离线评估队列目前尚未测试、上传或启动；不将脚本准备完成等同于评估完成。
+10000步正式LoRA微调已完成，最终checkpoint为`seed42_v1/9999`。服务器日志与完成标记已通过SSH核实，阶段loss见`reports/STATUS.md`。验证集评估和真机运行尚未完成。新增离线评估队列已经上传，31项完整CPU测试通过，已在服务器后台启动并等待空闲GPU；尚未生成验证集结果。
 
 1. 检查本地终端和训练服务器SSH。
 2. 只读确认ACT结果、数据SHA、OpenPI版本、基础权重目录和Python/JAX环境。
@@ -70,3 +70,16 @@ GPU_INDEX替换成检查确认的空闲卡号。当前入口不允许共享忙�
 代码通过用户指定SSH仓库保存。认证材料只在workspace的`work`用于登录，不放这里；Git排除原录制、JPEG存储、基础／训练权重、环境、cache和checkpoint。
 
 OpenPI及其基础模型按官方许可使用；完整第三方代码不去署名，项目新增适配器和检查记录单独说明，见`THIRD_PARTY.md`。不因微调而把π0.5架构称为个人原创。
+
+## 已完成训练后的离线评估
+
+现有队列PID和最新阶段保存在服务器`reports/evaluation_pipeline_status.json`。先检查现有队列，避免重复启动。它只占用空闲GPU；模型已驻留但瞬时利用率低的卡不会被当作空闲。
+
+```bash
+# 仅没有既有队列时，在训练服务器新实验code目录显式启动：
+$HOME/output/envs/yam-openpi/bin/python -u scripts/evaluate_pipeline.py \
+  --workspace "$HOME/output/personal/k1deler/fold_towel_pi05_20261102" \
+  --samples 256 --wait-hours 12 --execute
+```
+
+固定比较5份checkpoint和同一组验证窗口，先评估最终权重。每份报告为`reports/eval_STEP.json`，汇总为`reports/checkpoint_comparison.json`。不修改ACT、不连接设备、不自动部署；候选选择是验证集选择，不能宣称独立测试或折毛巾成功率。

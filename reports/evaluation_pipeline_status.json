@@ -1,0 +1,46 @@
+{
+  "pid": 1498069,
+  "robot_commands_sent": 0,
+  "steps": [
+    9999,
+    2000,
+    4000,
+    6000,
+    8000
+  ],
+  "samples": 256,
+  "created_wall_ns": 1793671693954787199,
+  "completed": [],
+  "phase": "waiting_for_idle_gpu",
+  "updated_wall_ns": 1793671694550284763,
+  "pending_step": 9999,
+  "gpu": null,
+  "child_pid": null,
+  "gpu_inventory": [
+    {
+      "index": 0,
+      "used_mib": 29617,
+      "total_mib": 97871,
+      "utilization": 0
+    },
+    {
+      "index": 1,
+      "used_mib": 49901,
+      "total_mib": 97871,
+      "utilization": 93
+    },
+    {
+      "index": 2,
+      "used_mib": 49783,
+      "total_mib": 97871,
+      "utilization": 100
+    },
+    {
+      "index": 3,
+      "used_mib": 43471,
+      "total_mib": 97871,
+      "utilization": 100
+    }
+  ],
+  "gpu_checked_wall_ns": 1793671754824189423
+}

@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
+  "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/smoke_seed42/1",
+  "scope": "real π0.5 base initialization and two optimizer steps; not task success",
+  "robot_commands_sent": 0
+}

@@ -1,0 +1,244 @@
+{
+  "checked_at_utc": "2026-11-03T02:07:16.275357+00:00",
+  "workspace": "/home/users/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102",
+  "reports": {
+    "training_pipeline_status.json": {
+      "task": "fold_towel",
+      "model": "pi05",
+      "method": "lora",
+      "pid": 1347422,
+      "code_root": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/code",
+      "robot_commands_sent": 0,
+      "formal_training_started": true,
+      "created_wall_ns": 1793620921458242394,
+      "max_wait_hours": 6.0,
+      "phase": "fine_tuning_complete_offline",
+      "updated_wall_ns": 1793626628751165895,
+      "child_pid": 1348662,
+      "child_running": false,
+      "latest_gpu_inventory": [
+        {
+          "index": 0,
+          "used_mib": 72038,
+          "total_mib": 97871,
+          "utilization": 100
+        },
+        {
+          "index": 1,
+          "used_mib": 89171,
+          "total_mib": 97871,
+          "utilization": 100
+        },
+        {
+          "index": 2,
+          "used_mib": 89169,
+          "total_mib": 97871,
+          "utilization": 100
+        },
+        {
+          "index": 3,
+          "used_mib": 5,
+          "total_mib": 97871,
+          "utilization": 0
+        }
+      ],
+      "latest_gpu_check_wall_ns": 1793620921532193135,
+      "selected_gpu": 3,
+      "gpu": 3,
+      "log": "train_console.log",
+      "smoke_checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/smoke_seed42/1",
+      "checkpoint_dir": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1",
+      "note": "Optimizer steps/checkpoints completed; held-out evaluation and robot testing are separate."
+    },
+    "train_status.json": {
+      "phase": "train_complete",
+      "gpu": {
+        "index": 3,
+        "used_mib": 5,
+        "total_mib": 97871,
+        "utilization": 0
+      },
+      "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
+      "openpi_commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "checkpoint_dir": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1",
+      "action_semantics": {
+        "task": "fold_towel",
+        "data_sha256": {
+          "meta.json": "70212b164c761285f3eca82844bb4afe24b20e105a62bd00106ea4018bcd53b1",
+          "qpos.npy": "779a1d076a932a20de721f29cdfdc922df707d38c43e18f195f988ab197bd465",
+          "action.npy": "32f19b1571164569134705773cfd37548355525a28190208442f1bffc01684c9",
+          "right_wrist.idx.npy": "f1167a171f9e1ee2867f46e66978a9adfdf085fe884dc9c044b6d1c6a208116d",
+          "right_wrist.jpg.bin": "fa3c307ebea373e06818b8cdef0aad18307b6829a4d9fb83ecdbe2f455f5bd47",
+          "left_wrist.idx.npy": "cb7dddd89ad877aa5053ee86d407698b49b6d34ebafd02b8441ba0c8feb88bf1",
+          "left_wrist.jpg.bin": "4d87ccff6963af086394554e037ab01bffffcc11842c8717c0d7d82763c2829d"
+        },
+        "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
+        "split_sha256": "deba135931ddc3bdf39a66005529531636782983ecdf6ed45d29c806b78a3d50",
+        "horizon": 50,
+        "offset": 0,
+        "absolute_labels": "recorded leader(t+k)",
+        "relative_dimensions": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "absolute_grippers": [
+          6,
+          13
+        ],
+        "source_order": "left_joint0..5,left_gripper,right_joint0..5,right_gripper",
+        "missing_base_camera": "zero RGB, image_mask false",
+        "normalization_fitted_on": "train only"
+      },
+      "robot_commands_sent": 0,
+      "environment_from_preflight": {
+        "python": "/home/users/zhaoruiqi_yizu/output/envs/yam-openpi/bin/python",
+        "jax": "0.5.3",
+        "flax": "0.10.2",
+        "numpy": "1.26.4"
+      }
+    },
+    "gpu_smoke_passed.json": {
+      "status": "passed",
+      "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
+      "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/smoke_seed42/1",
+      "scope": "real π0.5 base initialization and two optimizer steps; not task success",
+      "robot_commands_sent": 0
+    }
+  },
+  "processes": {
+    "pid": {
+      "pid": 1347422,
+      "exists": false
+    },
+    "child_pid": {
+      "pid": 1348662,
+      "exists": false
+    }
+  },
+  "last_metrics": [
+    [
+      "9950",
+      " grad_norm=0.0958, loss=0.0092, param_norm=1804.7598"
+    ],
+    [
+      "9960",
+      " grad_norm=0.0829, loss=0.0071, param_norm=1804.7600"
+    ],
+    [
+      "9970",
+      " grad_norm=0.0994, loss=0.0085, param_norm=1804.7600"
+    ],
+    [
+      "9980",
+      " grad_norm=0.0541, loss=0.0036, param_norm=1804.7600"
+    ],
+    [
+      "9990",
+      " grad_norm=0.0804, loss=0.0071, param_norm=1804.7600"
+    ]
+  ],
+  "milestones": [
+    {
+      "step": 0,
+      "metrics": "grad_norm=0.7262, loss=0.0751, param_norm=1803.8630"
+    },
+    {
+      "step": 2000,
+      "metrics": "grad_norm=0.1299, loss=0.0199, param_norm=1804.2164"
+    },
+    {
+      "step": 4000,
+      "metrics": "grad_norm=0.1081, loss=0.0122, param_norm=1804.5311"
+    },
+    {
+      "step": 6000,
+      "metrics": "grad_norm=0.1211, loss=0.0109, param_norm=1804.6917"
+    },
+    {
+      "step": 8000,
+      "metrics": "grad_norm=0.0926, loss=0.0085, param_norm=1804.7451"
+    }
+  ],
+  "train_tail": "21:37:02.619 [I] Preserving Checkpoint[step=6000 | time=2026-11-02 13:00:15.031818+00:00]: (Reason: on keep_period=1000). (1348662:checkpoint_manager.py:1949)\n21:37:02.619 [I] Preserving Checkpoint[step=7000 | time=2026-11-02 13:09:27.148408+00:00]: (Reason: on keep_period=1000). (1348662:checkpoint_manager.py:1949)\n21:37:02.619 [I] Preserving Checkpoint[step=8000 | time=2026-11-02 13:18:39.245112+00:00]: (Reason: on keep_period=1000). (1348662:checkpoint_manager.py:1949)\n21:37:02.619 [I] Preserving Checkpoint[step=9000 | time=2026-11-02 13:27:51.277637+00:00]: (Reason: on keep_period=1000). (1348662:checkpoint_manager.py:1949)\n21:37:02.619 [I] [process=0][thread=MainThread][step=9999] Starting CheckpointManager Save Finalize thread=save_finalize (1348662:checkpoint_manager.py:1453)\n21:37:02.620 [I] [process=0][thread=save_finalize] Waiting for background save thread=async_save. (1348662:async_checkpointer.py:258)\n21:37:02.620 [I] {'step': 9999, 'event_type': 'save', 'directory': '/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1', 'reached_preemption': False, 'preemption_received_at': None, 'synchronous': False, 'wait_for_prev_start_time': 1793626617.361374, 'wait_for_prev_duration_secs': 0.000148773193359375, 'checkpointer_blocking_start_time': 1793626617.3618126, 'checkpointer_blocking_duration_secs': 5.2577433586120605, 'get_old_steps_start_time': 1793626622.6195881, 'get_old_steps_duration_secs': 0.0002884864807128906, 'checkpoint_manager_blocking_start_time': 1793626617.3612463, 'checkpoint_manager_blocking_duration_secs': 5.259314298629761} (1348662:standard_logger.py:34)\n21:37:02.621 [I] Progress on: 10.0kit/10.0kit rate:2.1s/it remaining:00:00 elapsed:1:32:45 postfix:- (1348662:tqdm_logging.py:145)\n21:37:02.621 [I] Progress on: 10.0kit/10.0kit rate:2.1s/it remaining:00:00 elapsed:1:32:45 postfix:- (1348662:tqdm_logging.py:145)\n21:37:02.621 [I] Waiting for checkpoint manager to finish                                         (1348662:train.py:275)\n21:37:02.621 [I] [process=0][thread=MainThread][step=9999][wait_until_finished] Waiting for Save Finalize thread (save_finalize) to complete. (1348662:checkpoint_manager.py:1998)\n21:37:02.642 [I] [process=0][thread=array_type_handler] Wrote 105 array_metadata.ArrayMetadata to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/train_state.orbax-checkpoint-tmp-39/array_metadatas/process_0 (1348662:array_metadata_store.py:198)\n21:37:05.997 [I] [process=0] /jax/checkpoint/write/bytes_per_sec: 855.3 MiB/s (total bytes: 7.2 GiB) (time elapsed: 8 seconds) (per-host) (1348662:base_pytree_checkpoint_handler.py:114)\n21:37:05.997 [I] [process=0] /jax/checkpoint/write/bytes_per_sec: 413.0 MiB/s (total bytes: 3.5 GiB) (time elapsed: 8 seconds) (per-host) (1348662:base_pytree_checkpoint_handler.py:114)\n21:37:05.997 [I] [process=0][thread=async_save] 5 Handler Commit operations completed.            (1348662:async_checkpointer.py:87)\n21:37:05.999 [I] Renaming /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/assets.orbax-checkpoint-tmp-37 to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/assets (1348662:atomicity.py:289)\n21:37:06.009 [I] [process=0][thread=async_save] Skipped cross-host ArrayMetadata validation because only one process is found: process_index=0. (1348662:array_metadata_store.py:362)\n21:37:06.034 [I] Renaming /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/train_state.orbax-checkpoint-tmp-39 to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/train_state (1348662:atomicity.py:289)\n21:37:06.043 [I] [process=0][thread=async_save] Skipped cross-host ArrayMetadata validation because only one process is found: process_index=0. (1348662:array_metadata_store.py:362)\n21:37:06.066 [I] Renaming /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/params.orbax-checkpoint-tmp-38 to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36/params (1348662:atomicity.py:289)\n21:37:06.069 [I] Renaming /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999.orbax-checkpoint-tmp-36 to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999 (1348662:atomicity.py:289)\n21:37:06.077 [I] [process=0][thread=async_save] Finished saving checkpoint (finalized tmp dir) to `/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999`. (1348662:atomicity.py:573)\n21:37:06.077 [I] Finished asynchronous save (blocking + background) in 8.72 seconds to /dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/seed42_v1/9999 (1348662:async_checkpointer.py:412)\n21:37:06.077 [I] [process=0][thread=async_save] Background save thread done.                      (1348662:async_checkpointer.py:143)\n21:37:06.077 [I] [process=0][thread=save_finalize] Done with waiting for background save thread=async_save. (1348662:async_checkpointer.py:266)\n21:37:06.077 [I] [process=0][thread=save_finalize] No errors found in background save thread=async_save. (1348662:async_checkpointer.py:276)\n21:37:06.077 [I] [process=0][thread=save_finalize][step=9999] CheckpointManager Save Finalize is syncing with other hosts... (1348662:checkpoint_manager.py:2095)\n21:37:06.077 [I] [process=0][thread=save_finalize][step=9999] CheckpointManager Save Finalize is done on all hosts. (1348662:checkpoint_manager.py:2110)\n21:37:06.077 [I] [process=0][thread=MainThread][step=9999][wait_until_finished] Done waiting for Save Finalize thread (save_finalize) running at step=9999. (1348662:checkpoint_manager.py:2010)\nPI05_TRAIN_COMPLETE",
+  "log_modified_at_utc": "2026-11-02T13:37:06.275827+00:00",
+  "checkpoints": [
+    {
+      "step": 1000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 2000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 3000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 4000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 5000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 6000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 7000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 8000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 9000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 9999,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    }
+  ],
+  "evaluations": {},
+  "gpus": "0, NVIDIA H20, 29617, 97871, 0\n1, NVIDIA H20, 49901, 97871, 100\n2, NVIDIA H20, 49783, 97871, 100\n3, NVIDIA H20, 43471, 97871, 100\n",
+  "gpu_processes": "GPU-5a29429d-34ec-eebc-a3ca-9aab182e3b80, 34865, [Not Found], 29604\nGPU-9f1865f4-4ab1-61e8-26d2-6ea9a3e50b5c, 3600385, [Not Found], 49890\nGPU-8fba9d31-5289-19bf-372c-1c1e45686f9c, 3600386, [Not Found], 49772\nGPU-e646c212-caec-b2e1-1745-ba77fc2b4c3b, 1590239, [Not Found], 43458\n",
+  "disk_gib": {
+    "total": 163840.0,
+    "used": 117587.88,
+    "free": 46252.12
+  }
+}

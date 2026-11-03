@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "tests_passed": 31,
+  "raw_test_output": "...............................                                          [100%]\n31 passed in 24.78s",
+  "scope": "full project CPU tests in pinned training-server environment",
+  "gpu_inference_evaluation_completed": false,
+  "robot_commands_sent": 0
+}

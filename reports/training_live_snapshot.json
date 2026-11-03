@@ -1,32 +1,153 @@
 {
-  "snapshot_wall_ns": 1793621972633536203,
-  "phase": "train_running",
-  "gpu": 3,
-  "pipeline_pid": 1347422,
-  "pipeline_alive": true,
-  "child_pid": 1348662,
-  "child_alive": true,
-  "last_reported_step": 1580,
+  "checked_at_utc": "2026-11-03T02:07:16.275357+00:00",
+  "phase": "fine_tuning_complete_offline",
+  "completed_optimizer_steps": 10000,
+  "last_logged_step": 9990,
+  "latest_metrics": [
+    "9990",
+    " grad_norm=0.0804, loss=0.0071, param_norm=1804.7600"
+  ],
   "target_steps": 10000,
-  "smoke": {
-    "status": "passed",
-    "settings_sha256": "695cb0a7b6894d7d148729f87b5deb410c6f273363557c7a8ee347ef0e4f55f9",
-    "checkpoint": "/dm3/cpfs-output/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/checkpoints/fold_towel_pi05_lora/smoke_seed42/1",
-    "scope": "real \u03c00.5 base initialization and two optimizer steps; not task success",
-    "robot_commands_sent": 0
+  "final_checkpoint_step": 9999,
+  "training_processes": {
+    "pid": {
+      "pid": 1347422,
+      "exists": false
+    },
+    "child_pid": {
+      "pid": 1348662,
+      "exists": false
+    }
   },
-  "smoke_metrics": [
+  "milestones": [
     {
-      "grad_norm": 0.7262143492698669,
-      "loss": 0.07510266453027725,
-      "param_norm": 1803.863037109375
+      "step": 0,
+      "metrics": "grad_norm=0.7262, loss=0.0751, param_norm=1803.8630"
     },
     {
-      "grad_norm": 1.3970261812210083,
-      "loss": 0.085003562271595,
-      "param_norm": 1803.86328125
+      "step": 2000,
+      "metrics": "grad_norm=0.1299, loss=0.0199, param_norm=1804.2164"
+    },
+    {
+      "step": 4000,
+      "metrics": "grad_norm=0.1081, loss=0.0122, param_norm=1804.5311"
+    },
+    {
+      "step": 6000,
+      "metrics": "grad_norm=0.1211, loss=0.0109, param_norm=1804.6917"
+    },
+    {
+      "step": 8000,
+      "metrics": "grad_norm=0.0926, loss=0.0085, param_norm=1804.7451"
     }
   ],
-  "train_tail": "20:19:21.602 [I] Progress on: 1.56kit/10.0kit rate:1.9it/s remaining:1:15:16 elapsed:15:04 postfix:- (1348662:tqdm_logging.py:145)\n\n\nStep 1570: grad_norm=0.1508, loss=0.0205, param_norm=1804.1312\n\n\nStep 1580: grad_norm=0.1945, loss=0.0241, param_norm=1804.1331\n20:19:32.547 [I] Progress on: 1.58kit/10.0kit rate:1.9it/s remaining:1:15:29 elapsed:15:15 postfix:- (1348662:tqdm_logging.py:145)",
+  "checkpoints": [
+    {
+      "step": 1000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 2000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 3000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 4000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 5000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 6000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 7000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 8000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 9000,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    },
+    {
+      "step": 9999,
+      "params": true,
+      "assets": true,
+      "metadata": true
+    }
+  ],
+  "evaluation_queue_snapshot": {
+    "pid": 1498069,
+    "robot_commands_sent": 0,
+    "steps": [
+      9999,
+      2000,
+      4000,
+      6000,
+      8000
+    ],
+    "samples": 256,
+    "created_wall_ns": 1793671693954787199,
+    "completed": [],
+    "phase": "waiting_for_idle_gpu",
+    "updated_wall_ns": 1793671694550284763,
+    "pending_step": 9999,
+    "gpu": null,
+    "child_pid": null,
+    "gpu_inventory": [
+      {
+        "index": 0,
+        "used_mib": 29617,
+        "total_mib": 97871,
+        "utilization": 0
+      },
+      {
+        "index": 1,
+        "used_mib": 49901,
+        "total_mib": 97871,
+        "utilization": 93
+      },
+      {
+        "index": 2,
+        "used_mib": 49783,
+        "total_mib": 97871,
+        "utilization": 100
+      },
+      {
+        "index": 3,
+        "used_mib": 43471,
+        "total_mib": 97871,
+        "utilization": 100
+      }
+    ],
+    "gpu_checked_wall_ns": 1793671754824189423
+  },
   "robot_commands_sent": 0
 }
