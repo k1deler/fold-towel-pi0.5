@@ -35,5 +35,7 @@
   },
   "laboratory_tunnel_not_yet_tested": true,
   "robot_tested": false,
-  "robot_commands_sent": 0
+  "robot_commands_sent": 0,
+  "training_container_environment_self_check": "camera dependency import failed: missing libusb-1.0.so.0; no real camera test performed",
+  "laboratory_environment_self_check_required": true
 }
