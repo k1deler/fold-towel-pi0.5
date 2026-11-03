@@ -1,4 +1,4 @@
-# Fold towel π0.5 LoRA 微调准备
+# Fold towel π0.5 LoRA 微调
 
 这是独立于已完成ACT的π0.5实验，不覆盖ACT代码、数据或模型。目标仓库为`git@github.com:k1deler/fold-towel-.git`，名称末尾有连字符；旧ACT仓库`fold-towel`继续保留。
 
@@ -19,7 +19,7 @@
 
 ## 当前操作范围
 
-用户已在CPU准备通过后明确请求开始训练。后台`scripts/train_pipeline.py`已启动，检测到一张空闲GPU后自动完成smoke→train；当前仍为排队状态，不能称为反向训练已开始。该管线只管理自己的子进程，有有限等待／执行时间，不触碰ACT和机器人。
+10000步正式LoRA微调已完成，最终checkpoint为`seed42_v1/9999`。服务器日志与完成标记已通过SSH核实，阶段loss见`reports/STATUS.md`。验证集评估和真机运行尚未完成。新增离线评估队列目前尚未测试、上传或启动；不将脚本准备完成等同于评估完成。
 
 1. 检查本地终端和训练服务器SSH。
 2. 只读确认ACT结果、数据SHA、OpenPI版本、基础权重目录和Python/JAX环境。

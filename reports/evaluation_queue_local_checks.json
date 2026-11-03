@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checks": 8,
+  "scope": "CPU stdlib validation of queue report checks and paired checkpoint selection",
+  "full_pytest_run": false,
+  "gpu_inference_tested": false,
+  "remote_queue_launched": false,
+  "robot_commands_sent": 0
+}
