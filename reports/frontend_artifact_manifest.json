@@ -1,0 +1,12 @@
+{
+  "archive": "fold_towel_pi05_frontend_20261103.zip",
+  "bytes": 4884896,
+  "sha256": "0529710ae60221f928d6245015a2634a49b426e19a6d3de3feb2d6d13c8530a0",
+  "bundle_manifest_sha256": "cc9255c57bd2d1da5a0b40610a5982a51cf127039bc16bb578506d299661718f",
+  "file_count": 158,
+  "weights_included": false,
+  "model_checkpoint_step": 8000,
+  "model_service": "training server loopback 8778 via SSH tunnels",
+  "robot_tested": false,
+  "robot_commands_sent": 0
+}

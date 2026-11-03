@@ -1,0 +1,20 @@
+{
+  "status": "recorded_network_replay_passed",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "sample_split": "val",
+  "sample_index": 0,
+  "shape": [
+    50,
+    14
+  ],
+  "direct_service_max_abs_error": 0.0,
+  "raw_max_abs_error": 0.0,
+  "lossless_pixels_equal": true,
+  "jpeg_quality_90_path_checked": true,
+  "gripper_clipped_values": 21,
+  "joint_anchor_added_twice": false,
+  "wire_seconds": 0.15973063599085435,
+  "recorded_at_wall_ns": 1793692082525985814,
+  "robot_commands_sent": 0,
+  "robot_tested": false
+}

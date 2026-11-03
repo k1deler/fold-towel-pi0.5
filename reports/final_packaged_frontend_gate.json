@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "address": "127.0.0.1:8778",
+  "bundle_manifest_sha256": "cc9255c57bd2d1da5a0b40610a5982a51cf127039bc16bb578506d299661718f",
+  "max_abs_error": 0.0009763836860656738,
+  "raw_max_abs_error": 0.0009763836860656738,
+  "roundtrip_seconds": [
+    0.32474078598897904,
+    0.2801904089865275,
+    0.3116685069981031
+  ],
+  "created_wall_ns": 1793704670137297691,
+  "robot_commands_sent": 0,
+  "robot_tested": false,
+  "scope": "final exact packaged frontend, training-server model service; lab tunnel still needs local validation"
+}

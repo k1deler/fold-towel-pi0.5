@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "frontend_tests_passed": 59,
+  "test_output": "...........................................................              [100%]\n59 passed in 32.40s",
+  "scope": "independent robot frontend suite on training server using simulated arms/RPC and saved inputs; laboratory Python3.10 CUDA12.8 install still runs its own suite",
+  "adapter_tests_passed": 43,
+  "real_model_loopback_gate": {
+    "status": "passed",
+    "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+    "address": "127.0.0.1:8778",
+    "bundle_manifest_sha256": "cc9255c57bd2d1da5a0b40610a5982a51cf127039bc16bb578506d299661718f",
+    "max_abs_error": 0.0009763836860656738,
+    "raw_max_abs_error": 0.0009763836860656738,
+    "roundtrip_seconds": [
+      0.32474078598897904,
+      0.2801904089865275,
+      0.3116685069981031
+    ],
+    "created_wall_ns": 1793704670137297691,
+    "robot_commands_sent": 0,
+    "robot_tested": false,
+    "scope": "final exact packaged frontend, training-server model service; lab tunnel still needs local validation"
+  },
+  "artifact": {
+    "archive": "fold_towel_pi05_frontend_20261103.zip",
+    "bytes": 4884896,
+    "sha256": "0529710ae60221f928d6245015a2634a49b426e19a6d3de3feb2d6d13c8530a0",
+    "bundle_manifest_sha256": "cc9255c57bd2d1da5a0b40610a5982a51cf127039bc16bb578506d299661718f",
+    "file_count": 158,
+    "weights_included": false,
+    "model_checkpoint_step": 8000,
+    "model_service": "training server loopback 8778 via SSH tunnels",
+    "robot_tested": false,
+    "robot_commands_sent": 0
+  },
+  "laboratory_tunnel_not_yet_tested": true,
+  "robot_tested": false,
+  "robot_commands_sent": 0
+}

@@ -84,3 +84,7 @@ $HOME/output/envs/yam-openpi/bin/python -u scripts/evaluate_pipeline.py \
 ```
 
 固定比较5份checkpoint和同一组验证窗口，先评估最终权重。每份报告为`reports/eval_STEP.json`，汇总为`reports/checkpoint_comparison.json`。不修改ACT、不连接设备、不自动部署；候选选择是验证集选择，不能宣称独立测试或折毛巾成功率。
+
+## 独立机器人操作包
+
+已完成π0.5推理服务与原YAM运行器桥接；操作键沿用Enter/r/q。43项适配器测试、59项操作包测试通过，真实权重保存观测回放已通过。模型保留在训练服务器，实验室使用独立4.9MB操作包和回环SSH隧道。安装、服务、隧道、无硬件自检和现场运行的完整命令见[实机安装与操作](docs/实机安装与操作.md)。验证证据见`reports/frontend_validation.json`。实验室实际网络链路和机械臂尚未验证；不自动启动机器人。
