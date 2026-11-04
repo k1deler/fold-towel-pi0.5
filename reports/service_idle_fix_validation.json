@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "date": "2026-11-04",
+  "scope": "local CPU loopback mock model and image transport; no GPU, camera, CAN or robot",
+  "tests_passed": 13,
+  "raw_output": ".............                                                            [100%]\n13 passed in 14.22s",
+  "old_service_idle_disconnect_reproduced": true,
+  "old_service_idle_wait_seconds": 11,
+  "fixed_service_idle_wait_seconds": 11,
+  "partial_frame_timeout_retained": true,
+  "peer_disconnect_exits_handler": true,
+  "prediction_deadline_and_robot_protection_changed": false,
+  "remote_service_restart_verified": false,
+  "robot_commands_sent": 0,
+  "source_sha256": {
+    "deploy_pi05/service.py": "66b1f38fa2d4ea9837d94812418187e66b04d6b9881bea869aec352ad6c5ed75",
+    "tests/test_service_idle.py": "b5458ae98819a88235d322ff6020e7a1a517fb1f0ae79799c4f720c05834a511",
+    "scripts/fix_idle_wait.sh": "77d9cd7b35322ebef071dd9ca02029527c3be1bab9b762e447dd67c06ad61699"
+  }
+}

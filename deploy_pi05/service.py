@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 import socket
+import select
 import threading
 
 import numpy as np
@@ -66,11 +67,15 @@ def dispatch(engine, message, blobs):
             'gripper_clipped_values': excursions}
 
 
-def handle(engine, connection):
-    connection.settimeout(10)
+def handle(engine, connection, *, frame_timeout=10):
+    connection.settimeout(frame_timeout)
     with connection:
         try:
             while True:
+                # Operator alignment, Enter waits and pauses are not a frame transfer.
+                # Start the bounded frame read only when bytes become available.
+                if not select.select([connection], [], [], 1.0)[0]:
+                    continue
                 message, blobs = receive(connection)
                 try:
                     reply = dispatch(engine, message, blobs)
