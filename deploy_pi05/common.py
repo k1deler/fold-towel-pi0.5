@@ -78,21 +78,28 @@ def prepare_frames(frames, jpeg_roundtrip):
             if bgr is None:
                 raise ValueError('Training JPEG decoding failed')
             image = bgr[:, :, ::-1]
+            # Send the EXACT bytes from the one JPEG-q90 training preprocessing
+            # encode. A PNG of its decoded pixels is much larger over SSH; an
+            # additional JPEG encode would change those pixels and is forbidden.
+            blob = data.tobytes()
+        else:
+            # Already-decoded recorded observations need lossless transport.
+            ok, encoded = cv2.imencode('.png', np.ascontiguousarray(image[:, :, ::-1]))
+            if not ok:
+                raise ValueError('Lossless image encoding failed')
+            blob = encoded.tobytes()
         images.append(np.ascontiguousarray(image))
-        ok, encoded = cv2.imencode('.png', np.ascontiguousarray(image[:, :, ::-1]))
-        if not ok:
-            raise ValueError('Lossless image encoding failed')
-        blobs.append(encoded.tobytes())
+        blobs.append(blob)
     return np.stack(images), blobs
 
 
 def decode_frames(blobs):
     if len(blobs) != 2:
-        raise ValueError('Expected two lossless wrist PNGs')
+        raise ValueError('Expected two wrist images')
     frames = {}
     for name, data in zip(CAMERAS, blobs):
-        if not data.startswith(b'\x89PNG\r\n\x1a\n'):
-            raise ValueError('Only lossless PNG is accepted between processes')
+        if not (data.startswith(b'\x89PNG\r\n\x1a\n') or data.startswith(b'\xff\xd8')):
+            raise ValueError('Expected lossless PNG or original preprocessing JPEG')
         image = cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_COLOR)
         if image is None or image.shape != (480, 640, 3):
             raise ValueError('Invalid wrist image size')

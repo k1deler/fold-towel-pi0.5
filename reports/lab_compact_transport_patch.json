@@ -1,0 +1,8 @@
+{
+  "status": "compact_client_patch_installed",
+  "test_output": ".............                                                            [100%]\n13 passed in 0.47s\n",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "backup": "/home/team1/kideler_deploy/fold_towel_pi05_frontend_20261103/patch_backups/compact_20261104_210504_758260",
+  "replay_validation_required": true,
+  "robot_commands_sent": 0
+}

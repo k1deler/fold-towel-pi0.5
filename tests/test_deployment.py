@@ -5,6 +5,7 @@ import time
 
 import numpy as np
 import pytest
+import cv2
 
 from deploy_pi05.common import (CAMERAS, decode_frames, physical_actions, prepare_frames,
                                 validate_info, validate_state)
@@ -27,8 +28,23 @@ def test_lossless_transport_and_training_jpeg():
         np.testing.assert_array_equal(decoded[name], original[name])
         np.testing.assert_array_equal(images[i], original[name])
     images, blobs = prepare_frames(original, True)
+    assert all(blob.startswith(b'\xff\xd8') for blob in blobs)
     for i, name in enumerate(CAMERAS):
         np.testing.assert_array_equal(decode_frames(blobs)[name], images[i])
+
+
+def test_jpeg_transport_reuses_exact_training_encode_without_extra_loss():
+    rng = np.random.default_rng(123)
+    original = {name: rng.integers(0,256,(480,640,3),dtype=np.uint8) for name in CAMERAS}
+    images, blobs = prepare_frames(original, True)
+    decoded = decode_frames(blobs)
+    for i,name in enumerate(CAMERAS):
+        ok, expected = cv2.imencode('.jpg', original[name][:,:,::-1], [cv2.IMWRITE_JPEG_QUALITY,90])
+        assert ok and blobs[i] == expected.tobytes()
+        np.testing.assert_array_equal(decoded[name], images[i])
+        np.testing.assert_array_equal(decoded[name], cv2.imdecode(expected,cv2.IMREAD_COLOR)[:,:,::-1])
+    _, png = prepare_frames({name:images[i] for i,name in enumerate(CAMERAS)},False)
+    assert sum(map(len,blobs)) < sum(map(len,png))
 
 
 def test_only_absolute_grippers_are_clipped_and_joints_are_not_reanchored():
@@ -98,3 +114,37 @@ def test_network_failures_never_return_actions(fault, monkeypatch):
 def test_model_identity_is_required_and_verified():
     with pytest.raises(ValueError):
         validate_info(info(), 'different')
+
+
+def test_compact_transport_rejects_unupdated_model_service_before_prediction():
+    with socket.create_server(('127.0.0.1',0)) as server:
+        def worker():
+            conn,_ = server.accept()
+            with conn:
+                receive(conn);send(conn,info())
+        thread=threading.Thread(target=worker,daemon=True);thread.start()
+        with pytest.raises(ValueError,match='compact-image update'):
+            RemotePolicy('127.0.0.1:'+str(server.getsockname()[1]),
+                         expected_model_id='test',jpeg_roundtrip=True)
+        thread.join(timeout=2)
+
+
+def test_offline_numeric_reference_timeout_is_separate_from_live_deadline(monkeypatch):
+    from deploy_pi05.gate import numerical_replay
+    monkeypatch.setattr('deploy_pi05.client.MAX_REQUEST_SECONDS', .01)
+    with socket.create_server(('127.0.0.1',0)) as server:
+        def worker():
+            conn,_=server.accept()
+            with conn:
+                receive(conn);send(conn,info())
+                message,_=receive(conn)
+                time.sleep(.05)
+                action=np.zeros((50,14)).tolist()
+                send(conn,{'request_id':message['request_id'],'model_id':'test',
+                           'raw_actions':action,'actions':action})
+        thread=threading.Thread(target=worker,daemon=True);thread.start()
+        actions,raw,seconds=numerical_replay('127.0.0.1:'+str(server.getsockname()[1]),
+                                            'test',frames(),np.zeros(14),np.zeros((50,32)))
+        assert seconds >= .05 and actions.shape==(50,14)
+        np.testing.assert_array_equal(raw,actions)
+        thread.join(timeout=2)

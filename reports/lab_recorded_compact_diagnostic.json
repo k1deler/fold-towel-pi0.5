@@ -1,0 +1,36 @@
+{
+  "scope": "read-only saved failed episode; raw model replies discarded; updated compact transport, original1s timeout; no action execution",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "recording": "20261104_203854_fold_towel",
+  "compact_jpeg_payload_bytes": 95470,
+  "recorded_jpeg_pair_bytes": 95431,
+  "jpeg_encoding_seconds": 0.0080874010163825,
+  "recorded_image_roundtrips": [
+    {
+      "send_seconds": 0.0002497929963283241,
+      "reply_wait_seconds": 0.5975656039954629,
+      "total_seconds": 0.5978153969917912
+    },
+    {
+      "send_seconds": 9.669599239714444e-05,
+      "reply_wait_seconds": 0.3437929060019087,
+      "total_seconds": 0.34388960199430585
+    },
+    {
+      "send_seconds": 0.0002555370156187564,
+      "reply_wait_seconds": 0.3734289289859589,
+      "total_seconds": 0.3736844660015777
+    },
+    {
+      "send_seconds": 7.981198723427951e-05,
+      "reply_wait_seconds": 0.41958220399101265,
+      "total_seconds": 0.4196620159782469
+    },
+    {
+      "send_seconds": 0.00036879300023429096,
+      "reply_wait_seconds": 0.374790911009768,
+      "total_seconds": 0.3751597040100023
+    }
+  ],
+  "robot_commands_sent": 0
+}

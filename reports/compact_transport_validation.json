@@ -1,0 +1,85 @@
+{
+  "status": "lab_saved_recording_and_replay_gate_passed",
+  "tests_passed": 18,
+  "raw_output": "..................                                                       [100%]\n18 passed in 11.96s",
+  "server_cpu_tests_passed": 17,
+  "lab_client_tests_passed": 13,
+  "exact_preprocessing_jpeg_bytes_and_decoded_pixels_tested": true,
+  "client_timeout_seconds": 1,
+  "prediction_and_plan_deadlines_relaxed": false,
+  "field_png_diagnostic": {
+    "pair_bytes": 724988,
+    "recorded_jpeg_pair_bytes": 95431,
+    "roundtrip_seconds": [
+      1.8206203840090893,
+      1.008333597012097,
+      0.8757745530165266
+    ]
+  },
+  "field_compact_retest": "passed via temporary two-SSH-hop diagnostic forwarding; user OpenSSH tunnels must be reopened and validated",
+  "robot_commands_sent": 0,
+  "field_recorded_compact_result": {
+    "scope": "read-only saved failed episode; raw model replies discarded; updated compact transport, original1s timeout; no action execution",
+    "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+    "recording": "20261104_203854_fold_towel",
+    "compact_jpeg_payload_bytes": 95470,
+    "recorded_jpeg_pair_bytes": 95431,
+    "jpeg_encoding_seconds": 0.0080874010163825,
+    "recorded_image_roundtrips": [
+      {
+        "send_seconds": 0.0002497929963283241,
+        "reply_wait_seconds": 0.5975656039954629,
+        "total_seconds": 0.5978153969917912
+      },
+      {
+        "send_seconds": 9.669599239714444e-05,
+        "reply_wait_seconds": 0.3437929060019087,
+        "total_seconds": 0.34388960199430585
+      },
+      {
+        "send_seconds": 0.0002555370156187564,
+        "reply_wait_seconds": 0.3734289289859589,
+        "total_seconds": 0.3736844660015777
+      },
+      {
+        "send_seconds": 7.981198723427951e-05,
+        "reply_wait_seconds": 0.41958220399101265,
+        "total_seconds": 0.4196620159782469
+      },
+      {
+        "send_seconds": 0.00036879300023429096,
+        "reply_wait_seconds": 0.374790911009768,
+        "total_seconds": 0.3751597040100023
+      }
+    ],
+    "robot_commands_sent": 0
+  },
+  "field_saved_observation_gate": {
+    "status": "passed",
+    "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+    "address": "127.0.0.1:8778",
+    "bundle_manifest_sha256": "77958c57c7320a728cc76e2da2eee1821ee009314ada31a37a34dd1254641f5a",
+    "max_abs_error": 0.0009763836860656738,
+    "raw_max_abs_error": 0.0009763836860656738,
+    "numerical_replay_seconds": 0.913467762991786,
+    "created_wall_ns": 1793797566203475993,
+    "normal_jpeg_roundtrip_seconds": [
+      0.36058256999240257,
+      0.490357665985357,
+      0.4280106939841062,
+      0.4824988780019339,
+      0.4285055010113865
+    ],
+    "normal_jpeg_payload_bytes": [
+      80424,
+      80424,
+      80424,
+      80424,
+      80424
+    ],
+    "robot_commands_sent": 0,
+    "robot_tested": false
+  },
+  "service_background_pid": 1873102,
+  "temporary_diagnostic_tunnel_closed": true
+}

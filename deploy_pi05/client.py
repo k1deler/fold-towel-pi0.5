@@ -29,12 +29,15 @@ class RemotePolicy:
         self.last_raw = None
         self.last_gripper_excursions = 0
         self.last_request_seconds = None
+        self.last_payload_bytes = None
         try:
             send(self.sock, {'cmd': 'info'})
             info, blobs = receive(self.sock)
             if blobs:
                 raise ValueError('Unexpected info payload')
             validate_info(info, expected_model_id)
+            if jpeg_roundtrip and 'recording_jpeg90' not in info.get('image_transports', []):
+                raise ValueError('Model service needs the compact-image update and restart')
             self._info = info
             for key in ('format', 'action_mode', 'action_shift', 'fps', 'chunk_size', 'tasks', 'cameras'):
                 setattr(self, key, info[key])
@@ -62,8 +65,16 @@ class RemotePolicy:
             if noise.shape != (50, 32) or not np.isfinite(noise).all():
                 raise ValueError('Invalid replay noise')
             message['noise'] = noise.tolist()
-        send(self.sock, message, blobs)
-        reply, extra = receive(self.sock)
+        self.last_payload_bytes = sum(map(len, blobs))
+        try:
+            send(self.sock, message, blobs)
+            reply, extra = receive(self.sock)
+        except (OSError, ConnectionError) as exc:
+            self.sock.close()  # never reuse a stream after a partial response
+            raise TimeoutError(
+                f'Prediction transport failed after {time.monotonic()-started:.3f}s; '
+                f'payload={self.last_payload_bytes} bytes; {type(exc).__name__}: {exc}'
+            ) from exc
         elapsed = time.monotonic()-started
         if 'error' in reply:
             raise RuntimeError(reply['error'])

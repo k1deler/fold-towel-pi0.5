@@ -31,7 +31,7 @@ class Engine:
         self.lock = threading.Lock()
 
     def info(self):
-        return dict(self.metadata['policy_info'])
+        return dict(self.metadata['policy_info'], image_transports=['png', 'recording_jpeg90'])
 
     def infer(self, frames, qpos, noise=None):
         sample = {'state': validate_state(qpos), 'prompt': 'Fold the towel.',

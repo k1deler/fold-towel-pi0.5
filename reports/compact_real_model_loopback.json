@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "scope": "training-server loopback real model compact JPEG; laboratory tunnel unavailable at retest",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "normal_prediction_seconds": [
+    0.245674914913252,
+    0.24546098208520561,
+    0.2455915550235659,
+    0.2433293389622122,
+    0.24539433198515326
+  ],
+  "jpeg_pair_bytes": 80424,
+  "image_pixels_equal_to_training_preprocessing": true,
+  "client_timeout_seconds": 1,
+  "robot_commands_sent": 0
+}
