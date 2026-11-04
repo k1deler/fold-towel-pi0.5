@@ -4,7 +4,7 @@ import time
 
 import pytest
 
-from deploy_pi05.service import handle
+from deploy_pi05.service import handle, warmup
 from deploy_pi05.wire import receive, send
 
 
@@ -52,3 +52,23 @@ def test_idle_peer_disconnect_exits_handler():
     client.close()
     worker.join(timeout=2)
     assert not worker.is_alive()
+
+
+def test_ready_warmup_covers_replay_and_normal_prediction_signatures():
+    calls = []
+    class FakeEngine:
+        def infer(self, frames, qpos, noise=None):
+            calls.append((frames, qpos, noise))
+    frames, qpos, replay_noise = object(), object(), object()
+    warmup(FakeEngine(), frames, qpos, replay_noise)
+    assert calls == [(frames, qpos, replay_noise), (frames, qpos, replay_noise),
+                     (frames, qpos, None), (frames, qpos, None)]
+
+
+def test_failed_normal_path_warmup_is_not_silently_accepted():
+    class FakeEngine:
+        def infer(self, frames, qpos, noise=None):
+            if noise is None:
+                raise RuntimeError('normal path compile failed')
+    with pytest.raises(RuntimeError, match='normal path compile failed'):
+        warmup(FakeEngine(), {}, [], object())

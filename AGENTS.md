@@ -11,3 +11,5 @@
 - Default command is preflight/preparation. GPU smoke or training requires explicit CLI mode and an idle GPU; never kill other jobs.
 
 - User explicitly authorized occupied-GPU VRAM reuse for offline evaluation on 2026-11-03. Evaluation may use --share-with-headroom, with an explicit JAX allocator budget plus at least 8GiB spare reserve, prefer lower compute load, and never stop foreign processes. This does not change the separate training launcher defaults.
+
+- User requires all subsequent code and documentation changes to be committed and pushed to k1deler/fold-towel-; verify the remote commit after pushing. Never include credentials, recordings or weights.

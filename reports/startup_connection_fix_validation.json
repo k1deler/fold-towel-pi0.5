@@ -1,0 +1,14 @@
+{
+  "status": "local_and_server_cpu_tests_passed",
+  "date": "2026-11-04",
+  "local_tests_passed": 15,
+  "server_tests_passed": 15,
+  "raw_local_output": "...............                                                          [100%]\n15 passed in 12.16s",
+  "source_patch_installed_on_training_server": true,
+  "running_model_process_restarted_by_assistant": false,
+  "normal_path_real_model_check": "passed",
+  "issue": "explicit-noise replay warmup missed the normal noise=None JIT signature",
+  "prediction_timeout_increased": false,
+  "robot_commands_sent": 0,
+  "real_model_check_report": "startup_real_model_check.json"
+}

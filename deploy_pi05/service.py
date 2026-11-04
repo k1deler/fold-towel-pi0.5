@@ -87,6 +87,14 @@ def handle(engine, connection, *, frame_timeout=10):
             return
 
 
+def warmup(engine, frames, qpos, replay_noise):
+    # Supplying noise changes the keyword/array signature of OpenPI's JIT.
+    # A fixed-noise replay cannot warm the normal noise=None control path.
+    # Engine.infer converts actions to NumPy, synchronizing GPU completion.
+    for noise in (replay_noise, replay_noise, None, None):
+        engine.infer(frames, qpos, noise)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--workspace', type=Path, required=True)
@@ -96,11 +104,10 @@ def main():
     if len(jax.devices()) != 1 or jax.devices()[0].platform != 'gpu':
         raise RuntimeError('Select one CUDA GPU explicitly')
     engine = Engine(a.workspace)
-    # Compile once using a recorded observation before READY, never a live camera.
+    # Compile both request signatures before READY, using recorded images only.
     sample = np.load(a.workspace/'replay/observation.npz', allow_pickle=False)
     frames = {name: sample[name] for name in CAMERAS}
-    engine.infer(frames, sample['qpos'], sample['noise'])
-    engine.infer(frames, sample['qpos'], sample['noise'])
+    warmup(engine, frames, sample['qpos'], sample['noise'])
     with socket.create_server(('127.0.0.1', a.port)) as server:
         print('FOLD_PI05_SERVER_READY 127.0.0.1:'+str(a.port), flush=True)
         while True:

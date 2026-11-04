@@ -1,0 +1,8 @@
+{
+  "status": "server_source_patched_and_cpu_tested",
+  "raw_output": "...............                                                          [100%]\n15 passed in 11.62s\nPI05_STARTUP_CONNECTION_FIXED_AND_TESTED; restart model service and wait for READY; no robot commands\nBackup: /home/users/zhaoruiqi_yizu/output/personal/k1deler/fold_towel_pi05_20261102/code/deploy_pi05/service.py.before_startup_fix_20261104_200715_989779.bak\n",
+  "model_process_restarted": false,
+  "real_model_normal_path_retested": true,
+  "robot_commands_sent": 0,
+  "real_model_evidence": "startup_real_model_check.json"
+}

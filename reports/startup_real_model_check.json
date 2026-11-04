@@ -1,0 +1,22 @@
+{
+  "status": "both_signatures_and_normal_network_path_passed",
+  "model_id": "4e739df7d7b7c13f8f6ac5f9b3dd199671bca7f95611da1929eb5d66fb15b078",
+  "gpu": 0,
+  "gpu_at_start": [
+    0,
+    49197,
+    97871,
+    100
+  ],
+  "warmup_seconds": 43.17919173906557,
+  "operator_idle_seconds": 11,
+  "normal_prediction_roundtrip_seconds": [
+    0.27237284602597356,
+    0.27046072797384113,
+    0.26845502899959683
+  ],
+  "normal_requests_pass_explicit_noise": false,
+  "prediction_timeout_increased": false,
+  "scope": "saved observation, actual selected model, training-host loopback; laboratory tunnel not tested",
+  "robot_commands_sent": 0
+}
