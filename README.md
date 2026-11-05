@@ -1,10 +1,10 @@
-# Fold towel π0.5 LoRA 微调
+# fold-towel-pi0.5 · 折毛巾 π0.5 LoRA 微调
 
 2026-11-04追加：模型服务在READY前同时预热固定噪声回放和正常`noise=None`预测，避免自检通过后第一次正常请求临时编译超时。合并补丁见`scripts/fix_startup_connection.sh`；不会放宽客户端预测时限。后续代码及说明更新按用户要求同步到本仓库。
 
 2026-11-04：修复模型服务在归位、等待Enter或暂停超过10秒时关闭连接的问题。已部署服务的更新与重启步骤见[实机安装与操作](docs/实机安装与操作.md)。只改变服务的空闲等待；预测时限和设备保护继续保留。
 
-这是独立于已完成ACT的π0.5实验，不覆盖ACT代码、数据或模型。目标仓库为`git@github.com:k1deler/fold-towel-.git`，名称末尾有连字符；旧ACT仓库`fold-towel`继续保留。
+这是独立于已完成ACT的π0.5实验，不覆盖ACT代码、数据或模型。目标仓库为`git@github.com:k1deler/fold-towel-pi0.5.git`；旧ACT仓库`fold-towel`继续保留。
 
 ## 数据与区别
 
@@ -94,3 +94,7 @@ $HOME/output/envs/yam-openpi/bin/python -u scripts/evaluate_pipeline.py \
 已完成π0.5推理服务与原YAM运行器桥接；操作键沿用Enter/r/q。43项适配器测试、59项操作包测试通过，真实权重保存观测回放已通过。模型保留在训练服务器，实验室使用独立4.9MB操作包和回环SSH隧道。安装、服务、隧道、无硬件自检和现场运行的完整命令见[实机安装与操作](docs/实机安装与操作.md)。验证证据见`reports/frontend_validation.json`。实验室实际网络链路和机械臂尚未验证；不自动启动机器人。
 
 2026-11-04现场传输修复已安装并验证：训练预处理JPEG字节直接传输，减少约86.8%流量而保持模型RGB像素不变；实验室保存图像双SSH重放及新版自检通过。见[传输超时修复](docs/传输超时修复.md)。临时诊断隧道已关闭，用户需重新建立常用隧道后自检，未启动机器人。旧操作包zip需配套补丁，不能直接覆盖现有已修复目录。
+
+## 仓库名称
+
+项目仓库地址统一为`git@github.com:k1deler/fold-towel-pi0.5.git`。仓库改名不重命名已部署的Linux实验目录或Windows本地项目文件夹，因此现有服务、模型路径和启动命令继续使用原路径。

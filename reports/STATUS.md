@@ -12,7 +12,7 @@
 
 训练loss不代表验证误差或真机成功率；最后一次日志不是Step10000，10000次更新完成由最终保存与完成标记确认。
 
-SSH及GitHub访问已恢复。提交`df81455`已推送到`k1deler/fold-towel-`，并通过`ls-remote`核对。31项完整CPU测试在训练服务器通过；checkpoint内归一化统计SHA与preflight相同。证据见`evaluation_queue_server_checks.json`。
+SSH及GitHub访问已恢复。提交`df81455`已推送到`k1deler/fold-towel-pi0.5`，并通过`ls-remote`核对。31项完整CPU测试在训练服务器通过；checkpoint内归一化统计SHA与preflight相同。证据见`evaluation_queue_server_checks.json`。
 
 用户明确允许复用剩余显存后，已在GPU0完成5份checkpoint离线评估。33项CPU测试通过；使用32GiB JAX分配器预算，并要求额外8GiB余量，不停止其他人的作业。
 
